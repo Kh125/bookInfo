@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
+{{-- @if (session('Errors'))
+    <div class="bg-red-800 p-5 text-center text-white" role="alert">
+        {{ session('Errors') }}
+    </div>
+@endif --}}
 @section('content')
-
     {{-- <div class="fixed left-1/2 bottom-0">
         <svg class="animate-bounce" width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="25" cy="25" r="24" fill="white" stroke="#24B0D0" stroke-width="2"/>
@@ -12,16 +16,16 @@
     <div id="hero-section" class="flex flex-col flex-wrap md:flex-row items-center px-8 md:px-12 lg:px-24 py-5 md:py-28 mx-auto bg-gradient-to-r from-primarycolor to-secondarycolor border-b border-lightcolor">
         {{-- hero-left-section --}}
         <div id="hero-left" class="p-10 text-lightcolor" >
-            <h2 class="text-3xl md:text-5xl font-semibold" data-aos="fade-in"  data-aos-duration="3000">
+            <h2 class="text-3xl md:text-5xl font-semibold" data-aos="fade-in"  data-aos-duration="500">
                 Welcome From<br>
                 <span class="font-bold text-3xl md:text-7xl">EbookCommunity.</span>
             </h2>
-            <span class="mt-2 text-darkcolor" data-aos="fade-in" data-aos-duration="3000">
+            <span class="mt-2 text-darkcolor" data-aos="fade-in" data-aos-duration="500">
                 Explore and get what you want and share what you have at our book-shelf.
             </span>
             <div id="auth-button" class="mt-10 text-black space-x-3">
-                <button class="bg-gray-200 rounded-full px-7 py-3 text-center hover:opacity-75 transition duration-150 font-bold" data-aos="fade-in" data-aos-duration="3000">Login</button>
-                <button class="bg-gray-200 rounded-full px-7 py-3 text-center hover:opacity-75 transition duration-150 font-bold" data-aos="fade-in" data-aos-duration="3000">Register</button>
+                <button class="bg-lightcolor rounded-full px-7 py-3 text-center transition duration-150 font-bold" data-aos="fade-in" data-aos-duration="2000"><a href="{{ route('login') }}" class="hover:opacity-75">Login</a></button>
+                <button class="bg-lightcolor rounded-full px-7 py-3 text-center transition duration-150 font-bold" data-aos="fade-in" data-aos-duration="2000"><a href="{{ route('register') }}" class="hover:opacity-75">Register</a></button>
             </div>
         </div>
         {{-- hero-left-section --}}
@@ -44,10 +48,14 @@
                 Check our latest released books for this month
             </span>
         </div>
-        <div class="mt-10 grid grid-wrap grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 lg:gap-12">
-            @for ($i = 0; $i < 10; $i++)
-                <x-book-card title="Winter Misty" desc="A book about cold weather with no boyfriend"/>            
-            @endfor
+        <div class="mt-10 grid grid-wrap grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 lg:gap-12">            
+            @foreach ($latestBooks as $book)
+                @if ($loop->index < 5)
+                <x-book-card :book="$book"/>                
+                @else    
+                    @break
+                @endif             
+            @endforeach
         </div>
     </div>
     {{-- latest-book-section --}}
@@ -63,9 +71,13 @@
             </span>
         </div>
         <div class="mt-10 grid grid-wrap grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 lg:gap-12">
-            @for ($i = 0; $i < 10; $i++)
-                <x-book-card title="Winter Misty" desc="A book about cold weather with no boyfriend"/>            
-            @endfor
+            @foreach ($popularBooks as $book)
+            @if ($loop->index < 5)
+            <x-book-card :book="$book"/>                
+            @else    
+                @break
+            @endif            
+        @endforeach
         </div>
     </div>
     {{-- popular-book-section --}}
