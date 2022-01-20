@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body, html{
-    scroll-behavior: smooth;    
+    scroll-behavior: smooth;        
 }
 
 .alert-banner{

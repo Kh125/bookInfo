@@ -8,8 +8,8 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <title>EbookCom</title>
 </head>
-<body class="relative">
-    <header data-aos="fade-in" data-aos-duration="2000" class="mx-auto flex flex-col md:flex-row justify-between items-center border-b border-gray-400 px-8 md:px-14 lg:px-24 bg-lightcolor text-darkcolor">
+<body class="relative bg-gradient-to-r from-primarycolor to-secondarycolor">
+    <header data-aos="fade-in" data-aos-duration="2000" class="mx-auto flex flex-col md:flex-row justify-between items-center border-b border-gray-400 px-12 bg-lightcolor text-darkcolor">
         <div id="logo">
             <a href="/">
                 <svg width="200" height="80" viewBox="0 0 66 23" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -22,37 +22,76 @@
         </div>
         <div class="flex flex-col lg:flex-row items-center lg:space-x-10">
             <ul class="flex flex-col md:flex-row items-center md:space-x-14 mb-0 md:mb-5 lg:mb-0 mt-5 lg:mt-0">
-                <li class="hover:text-primarycolor transition duration-150 mb-5 md:mb-0 font-semibold">
-                    <a href="{{ route('index') }}">Home</a>
-                </li>
-                <li class="hover:text-primarycolor transition duration-150 mb-5 md:mb-0 font-semibold">
-                    <a href="#contact">Contact</a>
-                </li>
-                <li class="hover:text-primarycolor transition duration-150 mb-5 md:mb-0 font-semibold">
-                    <a href="{{ route('login') }}">Login</a>
-                </li> 
-                <li class="hover:text-primarycolor transition duration-150 mb-5 md:mb-0 font-semibold">
-                    <a href="{{ route('register') }}">Register</a>
-                </li>                              
+                @auth                    
+                    <li class="hover:text-primarycolor transition duration-150 mb-5 md:mb-0 font-semibold">
+                        <a href="{{ route('books.index') }}">Index</a>
+                    </li>
+                    <li class="hover:text-primarycolor transition duration-150 mb-5 md:mb-0 font-semibold">
+                        <a href="{{ route('books.index') }}">Latest</a>
+                    </li>
+                    <li class="hover:text-primarycolor transition duration-150 mb-5 md:mb-0 font-semibold">
+                        <a href="{{ route('books.index') }}">Popular</a>
+                    </li> 
+                    <li class="hover:text-primarycolor transition duration-150 mb-5 md:mb-0 font-semibold">
+                        <a href="{{ route('logout') }}">Logout</a>
+                    </li>                              
+                @endauth
+                @guest
+                    <li class="hover:text-primarycolor transition duration-150 mb-5 md:mb-0 font-semibold">
+                        <a href="{{ route('index') }}">Home</a>
+                    </li>
+                    <li class="hover:text-primarycolor transition duration-150 mb-5 md:mb-0 font-semibold">
+                        <a href="#contact">Contact</a>
+                    </li>
+                    <li class="hover:text-primarycolor transition duration-150 mb-5 md:mb-0 font-semibold">
+                        <a href="{{ route('login') }}">Login</a>
+                    </li> 
+                    <li class="hover:text-primarycolor transition duration-150 mb-5 md:mb-0 font-semibold">
+                        <a href="{{ route('register') }}">Register</a>
+                    </li>  
+                @endguest
             </ul>
-            <div id="search-box" class="relative flex flex-col md:flex-row items-center md:space-x-5 mb-5 lg:mb-0">
-                <div class="mb-5 md:mb-0">
-                    <input type="text" class="placeholder-darkcolor rounded-full bg-white-500 border border-primarycolor w-64 pl-8 py-2 h-8 outline-none" placeholder="Search(Type '/' to focus)">
-                    <div class="absolute top-0">
-                        <svg class="fill-current w-4 text-gray-500 mt-2 ml-2" viewBox="0 0 24 24"><path class="heroicon-ui text-darkcolor" d="M16.32 14.9l5.39 5.4a1 1 0 01-1.42 1.4l-5.38-5.38a8 8 0 111.41-1.41zM10 16a6 6 0 100-12 6 6 0 000 12z"/></svg>
+            @auth                
+                <div id="search-box" class="relative flex flex-col md:flex-row items-center md:space-x-5 mb-5 lg:mb-0">
+                    <div class="mb-5 md:mb-0">
+                        <input type="text" class="placeholder-darkcolor rounded-full bg-white-500 border border-primarycolor w-64 pl-8 py-2 h-8 outline-none" placeholder="Search(Type '/' to focus)">
+                        <div class="absolute top-0">
+                            <svg class="fill-current w-4 text-gray-500 mt-2 ml-2" viewBox="0 0 24 24"><path class="heroicon-ui text-darkcolor" d="M16.32 14.9l5.39 5.4a1 1 0 01-1.42 1.4l-5.38-5.38a8 8 0 111.41-1.41zM10 16a6 6 0 100-12 6 6 0 000 12z"/></svg>
+                        </div>
+                    </div>
+                    <div class="profile-box">
+                        <a href="#">
+                            <img src="/img/a chit ka ly1.jpeg" alt="a chit ka ly" class="object-cover rounded-full w-7 h-7">
+                        </a>
                     </div>
                 </div>
-                <div class="profile-box">
-                    <a href="#">
-                        <img src="/img/a chit ka ly1.jpeg" alt="a chit ka ly" class="object-cover rounded-full w-7 h-7">
-                    </a>
-                </div>
-            </div>
+            @endauth
         </div>
-    </header>
+    </header>  
+    
+    @if (session('error'))
+        <div id="modal-box" class="bg-gradient-to-r from-primarycolor to-secondarycolor mb-16 p-10">
+            <div class="transition duration-200 absolute shadow-md mx-auto lg:right-10 flex flex-wrap justify-between items-center mt-5 p-6 w-72 sm:w-7/12 md:w-6/12 lg:w-5/12 xl:w-4/12 rounded-lg error bg-lightcolor border-2 border-red-500 text-center text-red-500" data-aos="fade-left" data-aos-duration="600">
+                <p class="font-bold">{{ session('error') }}</p>
+                <a id="close-button">
+                    <svg id="Layer_1" class="w-3 h-3" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><title>remove-delete-glyph</title><polygon points="512 86.78 425.22 0 256 169.22 86.78 0 0 86.78 169.22 256 0 425.22 86.78 512 256 342.78 425.22 511.99 512 425.22 342.78 256 512 86.78" fill="#5b5b5f"/></svg>
+                </a>
+            </div> 
+        </div>
+    @endif     
+    @if (session('status'))
+        <div id="modal-box" class="bg-gradient-to-r from-primarycolor to-secondarycolor mb-16 p-10">
+            <div class="transition duration-200 absolute shadow-md mx-auto lg:right-10 flex flex-wrap justify-between items-center mt-5 p-6 w-72 sm:w-7/12 md:w-6/12 lg:w-5/12 xl:w-4/12 rounded-lg error bg-lightcolor border-2 border-primarycolor text-center text-primarycolor" data-aos="fade-left" data-aos-duration="600">
+                <p class="font-bold">{{ session('status') }}</p>
+                <a id="close-button">
+                    <svg id="Layer_1" class="w-3 h-3" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><title>remove-delete-glyph</title><polygon points="512 86.78 425.22 0 256 169.22 86.78 0 0 86.78 169.22 256 0 425.22 86.78 512 256 342.78 425.22 511.99 512 425.22 342.78 256 512 86.78" fill="#5b5b5f"/></svg>
+                </a>
+            </div> 
+        </div>
+    @endif 
     @yield('content')
     <footer id="contact" class="py-10 md:py-18 px-12 bg-lightcolor text-darkcolor">
-        <div class="mx-auto flex flex-col md:flex-row justify-between items-center md:items-start text-center md:text-left pb-8 border-b border-darkcolor" data-aos="fade-in" data-aos-duration="3000">
+        <div class="mx-auto flex flex-col md:flex-row justify-between items-center md:items-start text-center md:text-left pb-8 border-b border-darkcolor" data-aos="fade-in" data-aos-duration="500">
             <div class="first-period mx-auto md:mx-0">
                 <div>
                     <h2 class="mb-3 md:mb-5 uppercase text-lg font-semibold">Connect</h2>
@@ -137,6 +176,14 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>        
         AOS.init();
+        const button = document.getElementById('close-button'); // or classname, whatever. it is your link or any node element instead of it. 
+        const div = document.getElementById('modal-box');
+
+        function toggleDiv(e) {
+            e.preventDefault(); // only if you use <a> as node.            
+            div.classList.add("hidden");
+        }
+        button.addEventListener('click', toggleDiv, false);
     </script>
 </body>
 </html>

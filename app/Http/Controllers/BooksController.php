@@ -2,10 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Books;
+use App\ViewModels\BooksViewModel;
+use App\ViewModels\BookViewModel;
 use Illuminate\Http\Request;
 
 class BooksController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(['auth'])->only(['index']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,17 +21,9 @@ class BooksController extends Controller
      */
     public function index()
     {
-        return view('books.index');
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function books()
-    {
-        return view('books.index');
+        $books = Books::orderBy('released_date','desc')->get();
+        $viewModel = new BooksViewModel($books);
+        return view('books.index', $viewModel);
     }
 
     /**
@@ -55,7 +55,9 @@ class BooksController extends Controller
      */
     public function show($id)
     {
-        return view('index');
+        $book = Books::find($id);
+        $viewModel = new BookViewModel($book);
+        return view('books.show', $viewModel);
     }
 
     /**

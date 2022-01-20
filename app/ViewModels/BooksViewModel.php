@@ -6,19 +6,13 @@ use Spatie\ViewModels\ViewModel;
 
 class BooksViewModel extends ViewModel
 {
-    public $latestBooks;
-    public $popularBooks;
-    public function __construct($latestBooks, $popularBooks)
+    public $books;    
+    public function __construct($books)
     {
-        $this->latestBooks = $latestBooks;
-        $this->popularBooks = $popularBooks;
+        $this->books = $books;
     }
 
-    public function latestBooks(){
-        return $this->latestBooks;
-    }
-
-    public function popularBooks(){
-        return $this->popularBooks;
-    }
+    public function books(){
+        return $this->books;
+    }    
 }

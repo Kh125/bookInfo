@@ -6,6 +6,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      padding: {
+        '1/3': '33.33333%',
+        '2/3': '66.66667%'
+      },
       colors: {
         primarycolor: "#24B0D0",
         secondarycolor: "#89CBCB",
@@ -15,5 +19,7 @@ module.exports = {
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/aspect-ratio')
+  ],
 }

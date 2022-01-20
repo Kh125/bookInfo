@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Books;
-use App\ViewModels\BooksViewModel;
+use App\ViewModels\HomeViewModel;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -17,7 +17,7 @@ class HomeController extends Controller
     {
         $latestBooks = Books::orderBy('released_date','desc')->get();
         $popularBooks = Books::orderBy('rating', 'desc')->get();
-        $viewModel = new BooksViewModel($latestBooks, $popularBooks);
+        $viewModel = new HomeViewModel($latestBooks, $popularBooks);
         return view('index', $viewModel);
     }
 
