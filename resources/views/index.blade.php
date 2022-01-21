@@ -12,10 +12,12 @@
             <span class="mt-2 text-darkcolor" data-aos="fade-in" data-aos-duration="500">
                 Explore and get what you want and share what you have at our book-shelf.
             </span>
-            <div id="auth-button" class="mt-10 text-black">
-                <a href="{{ route('login') }}" class="mr-5 hover:opacity-75 bg-lightcolor rounded-full px-7 py-3 text-center transition duration-150 font-bold" data-aos="fade-in" data-aos-duration="2000">Login</a>
-                <a href="{{ route('register') }}" class="hover:opacity-75 bg-lightcolor rounded-full px-7 py-3 text-center transition duration-150 font-bold" data-aos="fade-in" data-aos-duration="2000">Register</a>
-            </div>
+            @guest
+                <div id="auth-button" class="mt-10 text-black">
+                    <a href="{{ route('login') }}" class="mr-5 hover:opacity-75 bg-lightcolor rounded-full px-7 py-3 text-center transition duration-150 font-bold" data-aos="fade-in" data-aos-duration="2000">Login</a>
+                    <a href="{{ route('register') }}" class="hover:opacity-75 bg-lightcolor rounded-full px-7 py-3 text-center transition duration-150 font-bold" data-aos="fade-in" data-aos-duration="2000">Register</a>
+                </div>                
+            @endguest
         </div>
         {{-- hero-left-section --}}
         {{-- hero-right-section --}}
@@ -28,8 +30,8 @@
     {{-- hero-section --}}
 
     {{-- latest-book-section --}}
-    <div id="popular-book" class="w-full overflow-x-hidden text-left py-10 md:py-18 px-12 text-lightcolor border-b border-lightcolor" data-aos="fade-in" data-aos-duration="3000">
-        <div class="text-center md:text-left">
+    <div id="popular-book" class="w-full text-left py-10 md:py-18 px-2 sm:px-12 text-lightcolor border-b border-lightcolor" data-aos="fade-in" data-aos-duration="3000">
+        <div class="mt-6 text-center md:text-left">
             <h2 class="uppercase text-lg font-semibold">
                 Latest Release Books
             </h2>
@@ -37,7 +39,7 @@
                 Check our latest released books for this month
             </span>
         </div>
-        <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 lg:gap-12">            
+        <div class="mx-auto sm:mx-0 mt-8 grid grid-wrap grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 sm:gap-8 lg:gap-12">            
             @foreach ($latestBooks as $book)
                 @if ($loop->index < 5)
                 <x-book-card :book="$book"/>                
@@ -50,8 +52,8 @@
     {{-- latest-book-section --}}
 
     {{-- popular-book-section --}}
-    <div data-aos="fade-in" data-aos-duration="3000" id="popular-book" class="overflow-x-hidden text-left py-10 md:py-18 px-12 text-lightcolor border-b border-lightcolor">
-        <div class="text-center md:text-left">
+    <div data-aos="fade-in" data-aos-duration="3000" id="popular-book" class="overflow-x-hidden text-left py-10 md:py-18 px-2 sm:px-12 text-lightcolor border-b border-lightcolor">
+        <div class="mt-6 text-center md:text-left">
             <h2 class="uppercase text-lg font-semibold">
                 Most Popular Books of This Week
             </h2>
@@ -59,7 +61,7 @@
                 Take a look at our most popular books of this week rated by the users.
             </span>
         </div>
-        <div class="mt-10 grid grid-wrap grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 lg:gap-12">
+        <div class="mx-auto sm:mx-0 mt-8 grid grid-wrap grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 sm:gap-8 lg:gap-12">
             @foreach ($popularBooks as $book)
             @if ($loop->index < 5)
             <x-book-card :book="$book"/>                

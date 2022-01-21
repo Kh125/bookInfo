@@ -10,7 +10,7 @@ class Books extends Model
     use HasFactory;
 
     protected $fillable = [
-        'users_id',
+        'user_id',
         'name',
         'description',
         'genres',
@@ -19,4 +19,9 @@ class Books extends Model
         'book_id',
         'file_path',
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
 }

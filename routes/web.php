@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BooksController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
@@ -17,6 +18,8 @@ Route::get('/register', [ AuthController::class, 'indexRegister'])->name('regist
 Route::post('/register', [ AuthController::class, 'processRegister']);
 
 Route::get('/logout', [AuthController::class, 'processLogout'])->name('logout')->middleware('auth');
+
+Route::get('{user:username}/profile', [UserController::class, 'profile'])->name('user.profile');
 
 Route::fallback(function(){
     return redirect()->route('index');

@@ -1,6 +1,6 @@
-<div data-aos="fade-in" data-aos-duration="1000" id="book-card" class="mb-5 mx-auto md:mx-0 w-44 h-auto sm:h-80 sm:w-56 bg-darkcolor text-center text-lightcolor rounded-md shadow-2xl">    
+<div data-aos="fade-in" data-aos-duration="1000" id="book-card" class="w-44 h-56 bg-darkcolor text-lightcolor rounded-md shadow-2xl mr-6 mb-6">    
     <a href="{{ route('books.show', $book['id']) }}">
-        <img src="/storage/images/{{ $book['file_path'] }}" alt="book-img" class="hover:opacity-80 object-cover w-full h-40 sm:h-64 sm:w-56 rounded-t-md">
+        <img src="/storage/images/{{ $book['file_path'] }}" alt="book-img" class="hover:opacity-80 object-cover w-full h-40 rounded-t-md">
     </a>
     <div id="book-card-content" class="p-4 text-left bg-darkcolor rounded-b-md">
         <p class="font-bold text-lightcolor text-sm">

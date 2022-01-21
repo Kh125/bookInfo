@@ -15,7 +15,7 @@ class BooksFactory extends Factory
     {
         $filepath = storage_path('images');
         return [
-            'users_id' => rand(1, 10),
+            'user_id' => rand(1, 10),
             'name'=>$this->faker->name,
             'description'=>$this->faker->paragraph,
             'genres'=> 'Drama, Romance, Comedy',

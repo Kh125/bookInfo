@@ -10,3 +10,19 @@ body, html{
     -webkit-animation: slide-in-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
     animation: slide-in-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
+
+header{
+    font-family:'Raleway', sans-serif;
+}
+
+body{
+    font-family: 'Raleway', sans-serif;
+}
+
+h2{
+    font-family: 'Montserrat', sans-serif;
+}
+
+#drop-down{
+    display: none;
+}

@@ -6,10 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">     
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> 
     <title>EbookCom</title>
 </head>
 <body class="relative bg-gradient-to-r from-primarycolor to-secondarycolor">
-    <header data-aos="fade-in" data-aos-duration="2000" class="mx-auto flex flex-col md:flex-row justify-between items-center border-b border-gray-400 px-12 bg-lightcolor text-darkcolor">
+    <header data-aos="fade-in" data-aos-duration="1500" class="z-50 mx-auto flex flex-col md:flex-row justify-between items-center border-b border-gray-400 px-12 bg-lightcolor text-darkcolor">
         <div id="logo">
             <a href="/">
                 <svg width="200" height="80" viewBox="0 0 66 23" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -34,7 +39,7 @@
                     </li> 
                     <li class="hover:text-primarycolor transition duration-150 mb-5 md:mb-0 font-semibold">
                         <a href="{{ route('logout') }}">Logout</a>
-                    </li>                              
+                    </li>                                                  
                 @endauth
                 @guest
                     <li class="hover:text-primarycolor transition duration-150 mb-5 md:mb-0 font-semibold">
@@ -59,10 +64,10 @@
                             <svg class="fill-current w-4 text-gray-500 mt-2 ml-2" viewBox="0 0 24 24"><path class="heroicon-ui text-darkcolor" d="M16.32 14.9l5.39 5.4a1 1 0 01-1.42 1.4l-5.38-5.38a8 8 0 111.41-1.41zM10 16a6 6 0 100-12 6 6 0 000 12z"/></svg>
                         </div>
                     </div>
-                    <div class="profile-box">
-                        <a href="#">
-                            <img src="/img/a chit ka ly1.jpeg" alt="a chit ka ly" class="object-cover rounded-full w-7 h-7">
-                        </a>
+                    <div class="relative z-50 profile-box">
+                        <a href="{{ route('user.profile', Auth::user()) }}" class="hover:bg-gray-50">
+                            <img src="/img/profile.webp" alt="a chit ka ly" class="object-cover rounded-full w-7 h-7">
+                        </a>                        
                     </div>
                 </div>
             @endauth
@@ -91,7 +96,7 @@
     @endif 
     @yield('content')
     <footer id="contact" class="py-10 md:py-18 px-12 bg-lightcolor text-darkcolor">
-        <div class="mx-auto flex flex-col md:flex-row justify-between items-center md:items-start text-center md:text-left pb-8 border-b border-darkcolor" data-aos="fade-in" data-aos-duration="500">
+        <div class="mx-auto flex flex-col md:flex-row flex-wrap justify-between items-center md:items-start text-center md:text-left pb-8 border-b border-darkcolor" data-aos="fade-in" data-aos-duration="500">
             <div class="first-period mx-auto md:mx-0">
                 <div>
                     <h2 class="mb-3 md:mb-5 uppercase text-lg font-semibold">Connect</h2>
@@ -148,7 +153,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="mt-10 md:mt-0 third-section mx-auto md:mx-0 bg-darkcolor p-6 rounded-lg text-lightcolor">
+            <div class="mt-10 md:mt-8 lg:mt-0 third-section mx-auto md:mx-0 bg-darkcolor p-6 rounded-lg text-lightcolor">
                 <h2 class="mb-3 md:mb-5 uppercase font-semibold text-lg text-left">Reach Us</h2>
                 <div class="contact-form md:mx-auto">
                     <form class="space-y-4 text-left">
@@ -177,13 +182,13 @@
     <script>        
         AOS.init();
         const button = document.getElementById('close-button'); // or classname, whatever. it is your link or any node element instead of it. 
-        const div = document.getElementById('modal-box');
-
+        const div = document.getElementById('modal-box');                         
+          
         function toggleDiv(e) {
             e.preventDefault(); // only if you use <a> as node.            
             div.classList.add("hidden");
         }
-        button.addEventListener('click', toggleDiv, false);
+        button.addEventListener('click', toggleDiv, false);        
     </script>
 </body>
 </html>

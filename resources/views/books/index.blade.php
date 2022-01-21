@@ -2,8 +2,8 @@
 
 @section('content')
     {{-- book-section --}}
-    <div id="popular-book" class="text-left py-10 md:py-18 px-12 bg-gradient-to-r from-primarycolor to-secondarycolor text-lightcolor border-b border-lightcolor" data-aos="fade-in" data-aos-duration="3000">
-        <div class="text-center md:text-left">            
+    <div data-aos="fade-in" data-aos-duration="1000" id="book" class="text-left py-10 md:py-18 px-2 sm:px-12 text-lightcolor border-b border-lightcolor">
+        <div class="mt-6 text-center ml-0 sm:ml-12 md:ml-0 sm:text-left">            
             <h2 class="uppercase text-xl font-bold">
                  Books
             </h2>
@@ -11,7 +11,7 @@
                 All kinds of book sorted by released date.
             </span>
         </div>
-        <div class="mt-16 grid grid-wrap grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 lg:gap-12">
+        <div class="mx-auto sm:mx-0 mt-8 grid grid-wrap grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-8 lg:gap-12">
             @foreach($books as $book)
                 <x-book-card :book="$book"/>                
             @endforeach

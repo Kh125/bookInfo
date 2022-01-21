@@ -16,7 +16,13 @@ module.exports = {
         lightcolor: "#ffffff",
         secondarylightcolor: "#edf0f5",
         darkcolor: "#0F1010"
+      },
+      fontFamily: {
+        'montserrat': ["'Montserrat'", 'sans-serif'],
+        'cairo':["'Cairo'", 'sans-serif'],        
+        'raleway':["'Raleway'", 'sans-serif'],
       }
+
     },
   },
   plugins: [
