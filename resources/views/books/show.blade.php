@@ -1,32 +1,57 @@
 @extends('layouts.app')
 
+@if ($book == null)
+@section('content')    
+<div class="my-30 text-center">
+    <div class="mt-56">
+        <h2 class="text-center text-6xl text-slate-200 font-bold">
+            404 | Not Found
+        </h2>
+    </div>
+</div>
+@endsection
+@else
 @section('content')
     {{-- latest-book-section --}}
     <div id="popular-book" class="px-8 py-20 bg-gradient-to-r from-primarycolor to-secondarycolor text-lightcolor border-b border-lightcolor">        
         <div class="text-center md:text-left">        
             <div class="flex flex-col md:flex-row">
                 <div class="sm:mx-0 md:mx-0 w-[18rem] h-[25rem] md:mr-16 mb-16 lg:mb-0" data-aos="fade-right" data-aos-duration="700">
-                    <img src="/storage/images/{{ $book['file_path'] }}" alt="dfsa" class="rounded-lg shadow-lg object-cover w-full h-full">                                                            
-                    @auth                      
-                        <div class="add-to-list mt-5 text-left">
-                            <a @guest disabled @endguest @auth href="" @endauth class="cursor-pointer w-auto justify-center flex rounded-lg hover:shadow-lg px-4 py-3 transition duration-150 bg-lightcolor text-darkcolor">                            
-                                    <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                    viewBox="0 0 473.935 473.935" style="enable-background:new 0 0 473.935 473.935;" xml:space="preserve">
-                                    <circle style="fill:#24B0D0;" cx="236.967" cy="236.967" r="236.967"/>
-                                    <path style="fill:#c94c50;" d="M315.519,111.865c-28.812,0-55.577,14.039-71.666,37.575l-3.323,4.224l-2.215-2.825
-                                    c-15.906-24.411-42.724-38.974-71.831-38.974c-49.668,0-85.717,36.048-85.717,85.709c0,73.328,132.744,181.394,142.424,189.174
-                                    c4.572,4.367,10.548,6.769,16.894,6.769s12.325-2.402,16.902-6.776c9.714-7.832,144.25-117.608,144.25-189.166
-                                    C401.228,147.913,365.184,111.865,315.519,111.865z"/>
-                                </svg>
-                                <span class="pl-3">Add to Favourite</span>                            
-                            </a>
-                        </div>                    
-                    @endauth
+                    <img src="/storage/images/{{ $book['file_path'] }}" alt="img-cover" class="rounded-lg shadow-lg object-cover w-full h-full">                                                                               
                 </div>
                 <div class="mt-5 md:mt-0 md:basis-3/5 lg:basis-4/6 pt-5 md:pt-0" data-aos="fade-in" data-aos-duration="3000">
-                    <h2 class="text-4xl font-bold uppercase text-left">
-                        {{ $book['name'] }}
-                    </h2>
+                    <div class="flex items-center justify-between">
+                        <h2 class="text-4xl font-bold uppercase text-left">
+                            {{ $book['name'] }}
+                        </h2>
+                        @auth                                                    
+                        <form action="{{ route('fav.toggle', $book['id']) }}" method="GET">
+                            @csrf
+                            <button type="submit" class="mr-20">
+                                @if (!$fav->checkFav($book['id']))
+                                    <svg class="w-7 h-7 hover:scale-105 transition duration-300" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                        viewBox="0 0 455 455" style="enable-background:new 0 0 455 455;" xml:space="preserve">
+                                        <path d="M326.632,10.346c-38.733,0-74.991,17.537-99.132,46.92c-24.141-29.384-60.398-46.92-99.132-46.92
+                                        C57.586,10.346,0,67.931,0,138.714c0,55.426,33.05,119.535,98.23,190.546c50.161,54.647,104.728,96.959,120.257,108.626l9.01,6.769
+                                        l9.01-6.768c15.529-11.667,70.098-53.978,120.26-108.625C421.949,258.251,455,194.141,455,138.714
+                                        C455,67.931,397.414,10.346,326.632,10.346z M334.666,308.974c-41.259,44.948-85.648,81.283-107.169,98.029
+                                        c-21.52-16.746-65.907-53.082-107.166-98.03C61.236,244.592,30,185.717,30,138.714c0-54.24,44.128-98.368,98.368-98.368
+                                        c35.694,0,68.652,19.454,86.013,50.771l13.119,23.666l13.119-23.666c17.36-31.316,50.318-50.771,86.013-50.771
+                                        c54.24,0,98.368,44.127,98.368,98.368C425,185.719,393.763,244.594,334.666,308.974z"/>
+                                    </svg>
+                                @else
+                                    <svg class="w-7 h-7 hover:scale-105 transition duration-300" fill="red" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                        viewBox="0 0 455 455" style="enable-background:new 0 0 455 455;" xml:space="preserve">
+                                        <path d="M326.632,10.346c-38.733,0-74.991,17.537-99.132,46.92c-24.141-29.383-60.399-46.92-99.132-46.92
+                                        C57.586,10.346,0,67.931,0,138.714c0,55.426,33.049,119.535,98.23,190.546c50.162,54.649,104.729,96.96,120.257,108.626l9.01,6.769
+                                        l9.009-6.768c15.53-11.667,70.099-53.979,120.26-108.625C421.95,258.251,455,194.141,455,138.714
+                                        C455,67.931,397.414,10.346,326.632,10.346z"/>
+                                    </svg>
+                                @endif
+                            </button>
+                        </form>
+                        @endauth
+                    </div>
                     <div class="flex flex-wrap items-center opacity-80">
                         <span class="mt-1">
                             <svg class="fill-current text-orange-400 w-4" viewBox="0 0 24 24"><g data-name="Layer 2"><path d="M17.56 21a1 1 0 01-.46-.11L12 18.22l-5.1 2.67a1 1 0 01-1.45-1.06l1-5.63-4.12-4a1 1 0 01-.25-1 1 1 0 01.81-.68l5.7-.83 2.51-5.13a1 1 0 011.8 0l2.54 5.12 5.7.83a1 1 0 01.81.68 1 1 0 01-.25 1l-4.12 4 1 5.63a1 1 0 01-.4 1 1 1 0 01-.62.18z" data-name="star"/></g></svg>
@@ -138,9 +163,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-        
+        </div>        
     </div>
-    {{-- latest-book-section --}}
-     
+    {{-- latest-book-section --}}     
 @endsection
+@endif

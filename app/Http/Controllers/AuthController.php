@@ -13,9 +13,10 @@ class AuthController extends Controller
     public function __construct()
     {
         $this->middleware(['guest'])->only(['indexLogin', 'indexRegister', 'processLogin', 'processRegister']);
+        $this->middleware(['auth'])->only(['processLogout']);
     }
     /**
-     * Display a listing of the resource.
+     * Display login form
      *
      * @return \Illuminate\Http\Response
      */
@@ -25,7 +26,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display register form.
      *
      * @return \Illuminate\Http\Response
      */
@@ -50,7 +51,7 @@ class AuthController extends Controller
             return back()->with('error', 'Invalid Login Details');
         }
         else{
-            return redirect()->route('books.index')->with('status', 'Login Success');
+            return redirect()->route('index')->with('status', 'Login Success');
         }
 
     }
@@ -67,7 +68,7 @@ class AuthController extends Controller
             'name'=> 'required|max:255',
             'username'=> 'required|max:255',
             'email'=> 'required|email|max:255',
-            'password'=> 'required|confirmed'
+            'password'=> 'required|confirmed',            
         ]);
 
         User::create([
@@ -75,6 +76,7 @@ class AuthController extends Controller
             'email'=> $request->email,
             'username'=> $request->username,
             'password'=> Hash::make($request->password),
+            'file_path' => null,
         ]);
         // auth()->attempt($request->only('email', 'password'));           
         // this line will check user exists in db and give authority if did
@@ -83,7 +85,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Process for register.
+     * Process for logout.
      *
      * @return \Illuminate\Http\Response
      */
@@ -91,71 +93,5 @@ class AuthController extends Controller
     {
         Auth::logout();
         return redirect()->route('index')->with('status', 'Logged out.');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }
