@@ -38,6 +38,7 @@ Route::post('/upload', [BooksController::class, 'showUpload'])->middleware('auth
 
 // user-profile
 Route::get('{user:username}/profile', [UserController::class, 'profile'])->name('user.profile');
+Route::post('{user:username}/profile', [UserController::class, 'editProfile'])->name('user.editProfile');
 // profile
 
 // search by all

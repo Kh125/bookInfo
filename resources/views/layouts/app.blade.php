@@ -182,7 +182,7 @@
         <div id="modal-box" class="bg-primarycolor mb-16 p-10">
             <div class="transition duration-200 absolute shadow-md mx-auto lg:right-10 flex flex-wrap justify-between items-center mt-5 p-6 w-72 sm:w-7/12 md:w-6/12 lg:w-5/12 xl:w-4/12 rounded-lg error bg-lightcolor border-2 border-red-500 text-center text-red-500" data-aos="fade-left" data-aos-duration="600">
                 <p class="font-bold">{{ session('error') }}</p>
-                <a id="close-button">
+                <a id="close-button" onclick="toggleDiv()">
                     <svg id="Layer_1" class="w-3 h-3" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><title>remove-delete-glyph</title><polygon points="512 86.78 425.22 0 256 169.22 86.78 0 0 86.78 169.22 256 0 425.22 86.78 512 256 342.78 425.22 511.99 512 425.22 342.78 256 512 86.78" fill="#5b5b5f"/></svg>
                 </a>
             </div> 
@@ -192,7 +192,7 @@
         <div id="modal-box" class="bg-primarycolor mb-16 p-10">
             <div class="transition duration-200 absolute shadow-md mx-auto lg:right-10 flex flex-wrap justify-between items-center mt-5 p-6 w-72 sm:w-7/12 md:w-6/12 lg:w-5/12 xl:w-4/12 rounded-lg error bg-lightcolor border-2 border-primarycolor text-center text-primarycolor" data-aos="fade-left" data-aos-duration="600">
                 <p class="font-bold">{{ session('status') }}</p>
-                <a id="close-button">
+                <a id="close-button" onclick="toggleDiv()">
                     <svg id="Layer_1" class="w-3 h-3" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><title>remove-delete-glyph</title><polygon points="512 86.78 425.22 0 256 169.22 86.78 0 0 86.78 169.22 256 0 425.22 86.78 512 256 342.78 425.22 511.99 512 425.22 342.78 256 512 86.78" fill="#5b5b5f"/></svg>
                 </a>
             </div> 
@@ -287,9 +287,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>  
     <script>        
-        AOS.init();
-        // modal box for status
-        const button = document.getElementById('close-button'); // or classname, whatever. it is your link or any node element instead of it. 
+        AOS.init();    
         const div = document.getElementById('modal-box');  
         
         // for profile-dropdown toggle
@@ -316,11 +314,11 @@
         });
         // drop-down-toggle end
 
+        // close-button-for-flash-status
         function toggleDiv(e) {
-            e.preventDefault(); // only if you use <a> as node.            
             div.classList.add("hidden");
         }
-        button.addEventListener('click', toggleDiv, false);                
+        // close-button-for-flash-status
         
     </script>
 </body>
