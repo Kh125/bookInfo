@@ -33,7 +33,7 @@ Route::get('/fav/{id}', [BooksController::class, 'favToggle'])->name('fav.toggle
 
 // upload books by user index and process form
 Route::get('/upload', [BooksController::class, 'indexUpload'])->name('upload')->middleware('auth');
-Route::post('/upload', [BooksController::class, 'showUpload'])->middleware('auth');
+Route::post('/upload', [BooksController::class, 'processUpload'])->middleware('auth');
 // upload
 
 // user-profile
