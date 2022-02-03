@@ -24,6 +24,9 @@ class BooksFactory extends Factory
             'book_id'=> $this->faker->unique()->name,
             'file_path'=> $this->faker->image('public/storage/images',230,290, '', false),
             'author'=> $this->faker->name,
+            'ISBN13'=>$this->faker->numberBetween(10000000, 99999999),
+            'ISBN10'=>$this->faker->numberBetween(10000000, 99999999),
+            'producerName'=>$this->faker->name,
         ];
     }
 }

@@ -14,7 +14,7 @@ class AddImgToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('file_path');
+            $table->string('file_path')->nullable();
         });
     }
 

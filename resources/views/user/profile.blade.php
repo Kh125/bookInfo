@@ -10,6 +10,7 @@
                 src="/storage/images/{{ $user->file_path }}"
                 @else src="https://ui-avatars.com/api/?size=320&name=Khant"
                 @endif alt="User Profile" id="profile-image" class="object-cover basis-2/5 rounded-lg shadow-lg max-w-xs h-[480px]">
+                @if (auth()->user()->id == $user->id)                                    
                 <div class="edit-box mt-3">
                     <a id="edit-button" class="cursor-pointer rounded-lg shadow-md hover:bg-slate-200 transition duration-200 bg-lightcolor text-darkcolor px-3 py-3 flex justify-center w-36">
                         <svg id="edit-svg" class="text-darkcolor mr-2" width="20" height="20" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -47,87 +48,92 @@
                         <span id="edit-button-toggle">Edit</span>
                     </a>
                 </div>
+                @endif
             </div>
             {{-- profile-img-end --}}
-            @if ($errors->any())
-            <x-profile-details :user="$user" :books="$books"/>
-            <x-edit-profile-details />
+            @if (auth()->user()->id != $user->id)
+                <x-profile-details :user="$user" :books="$books"/>
             @else
-            <x-profile-details :user="$user" :books="$books"/>
-            <x-edit-profile-details />
-            @endif
+                @if ($errors->any())
+                <x-profile-details :user="$user" :books="$books"/>
+                <x-edit-profile-details />
+                @else
+                <x-profile-details :user="$user" :books="$books"/>
+                <x-edit-profile-details />
+                @endif
+            @endif            
         </div>
     </div>
-    {{-- profile-section --}}    
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>  
-    <script>
+    @if(auth()->user()->id == $user->id)
+        {{-- profile-section --}}
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>  
+        <script>        
+            // edit-button toggle to change when click
+            $('#edit-button').click(function(){
+                $('#profile-details').toggle();
+                $('#edit-profile-details').toggle();            
+                if($('#edit-button-toggle').text() == "Edit"){
+                    $('#edit-button-toggle').text('Cancel');
+                    $('#cancel-svg').show();
+                    $('#edit-svg').hide();
+                    if($('#username').val() == ''){
+                        $('#username').val($('#profile-username').text());
+                    }                
+                    if($('#name').val() == ''){
+                        $('#name').val($('#profile-name').text());
+                    }                                
+                }
+                else{
+                    $('#edit-button-toggle').text('Edit');
+                    $('#cancel-svg').hide();
+                    $('#edit-svg').show();
+                }
+            });
+            // edit-button toggle to change when click
 
-        // edit-button toggle to change when click
-        $('#edit-button').click(function(){
-            $('#profile-details').toggle();
-            $('#edit-profile-details').toggle();            
-            if($('#edit-button-toggle').text() == "Edit"){
-                $('#edit-button-toggle').text('Cancel');
-                $('#cancel-svg').show();
+            // replace path with empty space to get only the image name and extension
+            $('#input-file').change(function(){
+                $('#show-aft-img').text($('#input-file').val().replace('C:\\fakepath\\', ''));            
+            });
+            // replace path with empty space to get only the image name and extension
+
+            $('#profile-edit-form').submit(function(){
+                
+                const profilename = $('#profile-name');
+                const profileusername = $('#profile-username');
+                const editname = $('#name');
+                const editusername = $('#username');
+
+                if(editname.val() == '' || editusername.val() == ''){
+                    alert("Data Can't be empty!");
+                    return false;
+                }
+                else if(profilename.text().trim() == editname.val().trim() && profileusername.text().trim() == editusername.val().trim() && $('#input-file').get(0).files.length == 0)
+                {
+                    alert("No Changes have been made");
+                    return false;
+                }
+                else{                
+                    $('#wait').show();
+                }        
+            });    
+
+            // check controller for error and run only one script from two
+            // for determining which form to show.
+            @if ($errors->any())    
+                $('#wait').hide();
                 $('#edit-svg').hide();
-                if($('#username').val() == ''){
-                    $('#username').val($('#profile-username').text());
-                }                
-                if($('#name').val() == ''){
-                    $('#name').val($('#profile-name').text());
-                }                                
-            }
-            else{
-                $('#edit-button-toggle').text('Edit');
+                $('#edit-button-toggle').text('Cancel');
+                $('#profile-details').hide(); 
+                $('#edit-profile-details').show();                                  
+            @else       
+                $('#wait').hide();
                 $('#cancel-svg').hide();
-                $('#edit-svg').show();
-            }
-        });
-        // edit-button toggle to change when click
-
-        // replace path with empty space to get only the image name and extension
-        $('#input-file').change(function(){
-            $('#show-aft-img').text($('#input-file').val().replace('C:\\fakepath\\', ''));            
-        });
-        // replace path with empty space to get only the image name and extension
-
-        $('#profile-edit-form').submit(function(){
+                $('#edit-profile-details').hide();                                    
+            @endif
+            // end
             
-            const profilename = $('#profile-name');
-            const profileusername = $('#profile-username');
-            const editname = $('#name');
-            const editusername = $('#username');
-
-            if(editname.val() == '' || editusername.val() == ''){
-                alert("Data Can't be empty!");
-                return false;
-            }
-            else if(profilename.text().trim() == editname.val().trim() && profileusername.text().trim() == editusername.val().trim() && $('#input-file').get(0).files.length == 0)
-            {
-                alert("No Changes have been made");
-                return false;
-            }
-            else{                
-                $('#wait').show();
-            }        
-        });    
-
-        // check controller for error and run only one script from two
-        // for determining which form to show.
-        @if ($errors->any())    
-            $('#wait').hide();
-            $('#edit-svg').hide();
-            $('#edit-button-toggle').text('Cancel');
-            $('#profile-details').hide(); 
-            $('#edit-profile-details').show();                                  
-        @else       
-            $('#wait').hide();
-            $('#cancel-svg').hide();
-            $('#edit-profile-details').hide();                                    
-        @endif
-        // end
-        
-    </script>
-    
+        </script>
+    @endif
 @endsection
 

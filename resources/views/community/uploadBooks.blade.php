@@ -9,24 +9,31 @@
                     {{-- first-section --}} 
                     <div id="first-section-box">
 
-                        <div class="mb-5 name">
+                        <div class="mb-4 name">
                             <label for="name" class="text-md font-montserrat font-semibold text-lightcolor">Title</label>
                             <input id="name" type="text" name="name" class="@error('name') border border-red-500 @enderror mt-1 w-full rounded-lg px-4 py-2 outline-none text-sm" placeholder="Enter book title" value="{{ old('name') }}">                        
                         </div>          
 
-                        <div class="mb-5 author">
+                        <div class="mb-4 author">
                             <label for="author" class="text-md font-montserrat font-semibold text-lightcolor">Author</label>
                             <input id="author" type="text" name="author" class="@error('author') border border-red-500 @enderror mt-1 w-full rounded-lg px-4 py-2 outline-none text-sm" placeholder="Enter author name (use  comma(' , ')  to add more author)">                        
-                        </div>                                          
-        
-                        <div class="mb-5 released_date">
-                            <label for="released_date" class="text-md font-montserrat font-semibold text-lightcolor">Released Date</label>
-                            <input id="released_date" type="date" name="released_date" class="@error('released_date') border border-red-500 @enderror mt-1 w-full rounded-lg px-4 py-2 outline-none text-sm" placeholder="Enter released date">
                         </div>
-                        <div class="mb-5 description">
+                        
+                        <div class="mb-4 genres">
+                            <label for="genres" class="text-md font-montserrat font-semibold text-lightcolor">Genres</label>
+                            <input id="genres" type="text" name="genres" class="@error('genres') border border-red-500 @enderror mt-1 w-full rounded-lg px-4 py-2 outline-none text-sm" placeholder="Genres(use comma (' , ') after one genre)">                        
+                        </div>
+                                
+                        <div class="mb-3 description">
                             <label for="description" class="text-md font-montserrat font-semibold text-lightcolor">Description</label>
                             <textarea name="description" id="description" cols="30" rows="3" class="@error('description') border border-red-500 @enderror mt-1 rounded-lg px-4 py-2 outline-none resize-none w-full text-sm" placeholder="Enter the description of book..."></textarea>
                         </div>
+
+                        <div class="mb-4 released_date">
+                            <label for="released_date" class="text-md font-montserrat font-semibold text-lightcolor">Released Date</label>
+                            <input id="released_date" type="date" name="released_date" class="@error('released_date') border border-red-500 @enderror mt-1 w-full rounded-lg px-4 py-2 outline-none text-sm" placeholder="Enter released date">
+                        </div>
+
                         <button id="next-button" class="px-5 py-2 bg-darkcolor text-lightcolor rounded-lg hover:text-primarycolor hover:bg-lightcolor transition duration-150">
                             <span class="">Next</span> 
                         </button>
@@ -51,33 +58,34 @@
                             <input id="isbn10" type="text" name="isbn10" class="@error('isbn10') border border-red-500 @enderror mt-1 w-full rounded-lg px-4 py-2 outline-none text-sm" placeholder="Enter ISBN 10 code">
                         </div>  
         
-                        <div class="mb-1 ebook_file 1st-input">
+                        <div class="ebook_file 1st-input mb-3">
                             <label for="ebook_file" class="text-md font-montserrat font-semibold text-lightcolor">Book</label>
-                            <label for="ebook_file" class="img-boxx @error('ebook_file') border border-red-500 @enderror relative flex flex-col outline-none text-sm bg-lightcolor rounded-lg w-full px-4 mt-1 p-2 py-3">
-                                <x-upload-box/>                         
-                            </label>  
-                            {{-- to add new upload box --}}
-                            <button type="button" class="add-button p-2">
-                                <svg width="23" height="23" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                    viewBox="0 0 489.8 489.8" style="enable-background:new 0 0 489.8 489.8;" xml:space="preserve">
-                                    <path d="M438.2,0H51.6C23.1,0,0,23.2,0,51.6v386.6c0,28.5,23.2,51.6,51.6,51.6h386.6c28.5,0,51.6-23.2,51.6-51.6V51.6
-                                    C489.8,23.2,466.6,0,438.2,0z M465.3,438.2c0,14.9-12.2,27.1-27.1,27.1H51.6c-14.9,0-27.1-12.2-27.1-27.1V51.6
-                                    c0-14.9,12.2-27.1,27.1-27.1h386.6c14.9,0,27.1,12.2,27.1,27.1V438.2z"/>
-                                    <path d="M337.4,232.7h-80.3v-80.3c0-6.8-5.5-12.3-12.3-12.3s-12.3,5.5-12.3,12.3v80.3h-80.3c-6.8,0-12.3,5.5-12.3,12.2
-                                    c0,6.8,5.5,12.3,12.3,12.3h80.3v80.3c0,6.8,5.5,12.3,12.3,12.3s12.3-5.5,12.3-12.3v-80.3h80.3c6.8,0,12.3-5.5,12.3-12.3
-                                    C349.7,238.1,344.2,232.7,337.4,232.7z"/>
-                                </svg>
-                            </button>
-                            {{-- to add new upload box --}}                        
+                            <div class="flex justify-between">
+                                <label for="ebook_file" class="img-boxx @error('ebook_file') border border-red-500 @enderror relative flex flex-col outline-none text-sm bg-lightcolor rounded-lg w-full px-4 mt-1 p-2 py-3">
+                                    <x-upload-box/>                         
+                                </label> 
+                                {{-- to add new upload box --}}
+                                <button type="button" class="add-button p-2">
+                                    <svg width="23" height="23" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                        viewBox="0 0 489.8 489.8" style="enable-background:new 0 0 489.8 489.8;" xml:space="preserve">
+                                        <path d="M438.2,0H51.6C23.1,0,0,23.2,0,51.6v386.6c0,28.5,23.2,51.6,51.6,51.6h386.6c28.5,0,51.6-23.2,51.6-51.6V51.6
+                                        C489.8,23.2,466.6,0,438.2,0z M465.3,438.2c0,14.9-12.2,27.1-27.1,27.1H51.6c-14.9,0-27.1-12.2-27.1-27.1V51.6
+                                        c0-14.9,12.2-27.1,27.1-27.1h386.6c14.9,0,27.1,12.2,27.1,27.1V438.2z"/>
+                                        <path d="M337.4,232.7h-80.3v-80.3c0-6.8-5.5-12.3-12.3-12.3s-12.3,5.5-12.3,12.3v80.3h-80.3c-6.8,0-12.3,5.5-12.3,12.2
+                                        c0,6.8,5.5,12.3,12.3,12.3h80.3v80.3c0,6.8,5.5,12.3,12.3,12.3s12.3-5.5,12.3-12.3v-80.3h80.3c6.8,0,12.3-5.5,12.3-12.3
+                                        C349.7,238.1,344.2,232.7,337.4,232.7z"/>
+                                    </svg>
+                                </button>
+                                {{-- to add new upload box --}}                        
+                            </div>                                                         
                         </div> 
                                                 
 
                         {{-- hidden upload box to copy and clone  --}}
                         <div class="added-box-clone hidden">
-                        <div class="mb-1 ebook_file">                            
+                        <div class="ebook_file flex justify-between mb-3">                            
                             <label for="ebook_file" class="img-boxx added-image-box-clone @error('ebook_file') border border-red-500 @enderror relative flex flex-col outline-none text-sm bg-lightcolor rounded-lg w-full px-4 mt-1 p-2 py-3">
-                                <x-upload-box/>
-                                
+                                <x-upload-box/>                                
                             </label>    
                             {{-- to add new upload box --}}
                             <button type="button" class="remove-button p-2">
@@ -94,7 +102,7 @@
                         </div>
                         {{-- hidden upload box to copy and clone  --}}                    
                                    
-                        <div class="flex items-center justify-between">
+                        <div class="flex items-center justify-between mt-5">
                             <button id="prev-button" class="px-5 py-2 bg-darkcolor text-lightcolor rounded-lg hover:text-primarycolor hover:bg-lightcolor transition duration-150">                                                    
                                 <span class="">Previous</span> 
                             </button>
@@ -120,8 +128,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>      
     <script>
         $('#wait').hide();
-        $('#second-section-box').show();        
-        $('#first-section-box').hide();        
+        $('#second-section-box').hide();        
+        // $('#first-section-box').hide();        
         $(document).ready(        
             function(){
               
@@ -148,14 +156,6 @@
                     $(this).parents(".ebook_file").remove();
                 });
                 // add new element for file upload
-
-                // show book name when it is select to upload
-                // $('#ebook_file').change(function(){
-                //     $('#img-name-box').text($('#ebook_file').val().replace('C:\\fakepath\\', ''));
-                // });
-                // $("body").on("change",".ebook-file-upload", function(){
-                //     console.log($(this));
-                // });
 
                 $('.ebook-file-upload').change(function(){
                     $(this).text($(this).val().replace('C:\\fakepath\\', ''));

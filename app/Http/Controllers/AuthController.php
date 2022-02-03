@@ -75,8 +75,7 @@ class AuthController extends Controller
             'name'=> $request->name,
             'email'=> $request->email,
             'username'=> $request->username,
-            'password'=> Hash::make($request->password),
-            'file_path' => null,
+            'password'=> Hash::make($request->password),            
         ]);
         // auth()->attempt($request->only('email', 'password'));           
         // this line will check user exists in db and give authority if did
