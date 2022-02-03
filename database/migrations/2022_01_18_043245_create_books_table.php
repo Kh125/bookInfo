@@ -19,9 +19,8 @@ class CreateBooksTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->text('genres');
-            $table->integer('rating');
-            $table->date('released_date');
-            $table->text('book_id')->unique();
+            $table->integer('rating')->nullable();
+            $table->date('released_date')->nullable();
             $table->string('file_path');
             $table->timestamps();
         });

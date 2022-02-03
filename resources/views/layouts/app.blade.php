@@ -93,23 +93,11 @@
                 <div id="search-box" class="relative flex flex-col md:flex-row items-center md:space-x-5 mb-5 lg:mb-0">
                     <div class="relative mb-5 md:mb-0">
                         <form name="search-form" id="search-form" action="{{ route('books.search') }}" method="GET">                            
-                            <input type="text" name="searchQuery" class="placeholder-darkcolor rounded-full bg-white-500 border border-primarycolor w-64 pl-8 py-2 h-8 outline-none" placeholder="Search(Type '/' to focus)">
+                            <input type="text" name="searchQuery" class="placeholder-darkcolor rounded-full bg-white-500 border border-primarycolor w-64 pl-8 py-2 h-8 outline-none" placeholder="Search books from Google">
                             <div class="absolute top-0">
                                 <svg class="fill-current w-4 text-gray-500 mt-2 ml-2" viewBox="0 0 24 24"><path class="heroicon-ui text-darkcolor" d="M16.32 14.9l5.39 5.4a1 1 0 01-1.42 1.4l-5.38-5.38a8 8 0 111.41-1.41zM10 16a6 6 0 100-12 6 6 0 000 12z"/></svg>
                             </div>
-                        </form>
-                        {{-- <div class="z-50 absolute top-12">
-                            <ul class="search-items-box bg-lightcolor w-64 shadow-xl">
-                                <li>
-                                    <a href="#" class="hover:opacity-80 hover:bg-slate-300 block pl-5 py-2 border-b border-primarycolor">Andy Cole</a>
-                                    <a href="#" class="hover:opacity-80 hover:bg-slate-300 block pl-5 py-2 border-b border-primarycolor">Moly Cole</a>
-                                    <a href="#" class="hover:opacity-80 hover:bg-slate-300 block pl-5 py-2 border-b border-primarycolor">Josy Cole</a>
-                                    <a href="#" class="hover:opacity-80 hover:bg-slate-300 block pl-5 py-2 border-b border-primarycolor">Mara Cole</a>
-                                    <a href="#" class="hover:opacity-80 hover:bg-slate-300 block pl-5 py-2 border-b border-primarycolor">Saga Cole</a>
-                                    <a href="#" class="hover:opacity-80 hover:bg-slate-300 block pl-5 py-2 border-b border-primarycolor">Joar Cole</a>
-                                </li>
-                            </ul>
-                        </div> --}}
+                        </form>                        
                     </div>
                     <div class="relative z-50 profile-box">                        
                         {{-- drop-down --}}

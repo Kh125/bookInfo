@@ -2,7 +2,8 @@
 
 @section('content')
     {{-- book-section --}}
-    <div data-aos="fade-in" data-aos-duration="2000" id="book" class="z-40 text-left py-10 md:py-18 px-2 sm:px-12 text-lightcolor border-b border-lightcolor">
+    <div data-aos="fade-in" data-aos-duration="2000" id="book" class="z-40 text-left py-10 md:py-18 px-2 sm:px-12 text-lightcolor @if ($books->count()) border-b border-lightcolor @endif">
+        @if ($books->count())                    
         <div class="mt-6 text-center ml-0 sm:ml-12 md:ml-0 sm:text-left">            
             <h2 class="uppercase text-xl font-bold">
                  Books
@@ -16,6 +17,11 @@
                 <x-book-card :book="$book"/>                
             @endforeach
         </div>
+        @else
+            <div class="mx-auto text-lg font-xl">
+                No books have been uploaded.
+            </div>
+        @endif
     </div>
     {{-- book-section --}}
     

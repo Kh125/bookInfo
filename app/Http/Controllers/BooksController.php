@@ -48,6 +48,7 @@ class BooksController extends Controller
             $viewModel = new BookViewModel($book);    
             return view('books.show', $viewModel, [
                 'fav'=> $fav,
+                'user'=>$book->user,
             ]);        
         }
         else{
@@ -202,8 +203,42 @@ class BooksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function processUpload()
+    public function processUpload(Request $request)
     {
+        $request->validate([
+            'name'=>'required|max:255',            
+            'genres'=>'required|max:255',
+            'description'=>'required|max:255',            
+            'filename' => 'required',
+            'bookImg'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',            
+        ]);
+        $image = null;        
+        if($request->bookImg != null){            
+            $request->bookImg->store('/public/bookCover');
+            $image = $request->bookImg->hashName();                         
+        }
+
+        if($request->hasfile('filename'))
+        {
+           foreach($request->file('filename') as $file)
+           {               
+               $file->store('/public/bookLink');  
+               $data[]= $file->hashName();
+           }
+        }
+        $request->user()->books()->create([            
+            'name'=> $request->name,
+            'description'=> $request->description,
+            'genres'=> $request->genres,            
+            'released_date'=> $request->released_date,            
+            'file_path'=> json_encode($data),
+            'author'=> $request->author,
+            'ISBN13'=> $request->ISBN13,
+            'ISBN10'=> $request->ISBN10,
+            'producerName'=> $request->producerName,
+            'bookImg'=> $image,
+        ]);
+
         return view('community.uploadBooks');
     }
 

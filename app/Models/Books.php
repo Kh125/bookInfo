@@ -16,8 +16,12 @@ class Books extends Model
         'genres',
         'rating',
         'released_date',
-        'book_id',
         'file_path',
+        'author',
+        'ISBN13',
+        'ISBN10',
+        'producerName',
+        'bookImg',
     ];
 
     public function user(){

@@ -17,7 +17,7 @@
         <div class="text-center md:text-left">        
             <div class="flex flex-col md:flex-row">
                 <div class="sm:mx-0 md:mx-0 w-[18rem] h-[25rem] md:mr-16 mb-16 lg:mb-0" data-aos="fade-right" data-aos-duration="700">
-                    <img src="/storage/images/{{ $book['file_path'] }}" alt="img-cover" class="rounded-lg shadow-lg object-cover w-full h-full">                                                                               
+                    <img src="{{ $book['bookImg'] }}" alt="img-cover" class="rounded-lg shadow-lg object-cover w-full h-full">                                                                               
                 </div>
                 <div class="mt-5 md:mt-0 md:basis-3/5 lg:basis-4/6 pt-5 md:pt-0" data-aos="fade-in" data-aos-duration="3000">
                     <div class="flex items-center justify-between">
@@ -73,13 +73,13 @@
                             <h2 class="opacity-75">
                                 Author
                             </h2>
-                            <p><a href="#" class="text-lg text-semibold hover:opacity-75">Michael Boylor</a></p>
+                            <p><a href="#" class="text-lg text-semibold hover:opacity-75">{{ $book['author'] }}</a></p>
                         </div>
                         <div class="book-info mr-8">                                                        
                             <h2 class="opacity-75">
                                 Producer
                             </h2>
-                            <p><a href="#" class="text-lg text-semibold hover:opacity-75">Jordan Ramsey</a></p>
+                            <p><a href="#" class="text-lg text-semibold hover:opacity-75">{{ $book['producerName'] }}</a></p>
                         </div>
                         <div class="book-info mr-8">                                                        
                             <h2 class="opacity-75">
@@ -97,13 +97,13 @@
                             <h2 class="opacity-75">
                                 ISBN-13                                
                             </h2>
-                            <p><a href="#" class="text-lg text-semibold hover:opacity-75">978-1491952023</a></p>
+                            <p><a href="#" class="text-lg text-semibold hover:opacity-75">{{ $book['ISBN13'] }}</a></p>
                         </div>
                         <div class="book-info mr-8">                                                        
                             <h2 class="opacity-75">
                                 ISBN-10
                             </h2>
-                            <p><a href="#" class="text-lg text-semibold hover:opacity-75">1491952024 </a></p>
+                            <p><a href="#" class="text-lg text-semibold hover:opacity-75">{{ $book['ISBN10'] }}</a></p>
                         </div>                                               
                     </div>
                     <div class="mt-5 download_file">     
@@ -112,7 +112,7 @@
                                 <h2 class="opacity-75">
                                     Uploaded by
                                 </h2>
-                                <p><a href="{{ route('user.profile', $book->user) }}" class="text-lg text-semibold hover:opacity-75">{{ $book->user->name }}</a></p>
+                                <p><a href="{{ route('user.profile', $user) }}" class="text-lg text-semibold hover:opacity-75">{{ $user->name }}</a></p>
                             </div>  
                             <div class="book-updated-time mt-5 mb-5">                                                        
                                 <h2 class="opacity-75">
@@ -120,46 +120,25 @@
                                 </h2>
                                 <p><a class="text-lg text-semibold">{{ $book['updated_at'] }}</a></p>
                             </div>                     
-                        </div>                     
-                        <div class="flex flex-wrap" data-aos="fade-in" data-aos-duration="1500">
-                            <div class="download-link mr-5 mt-5 lg:mt-0 text-left">
-                                <h2 class="mb-5 opacity-75">
-                                    GDrive
-                                </h2>                                   
-                                <button @auth href="" @endauth @guest disabled @endguest class="@guest cursor-not-allowed @endguest rounded-lg shadow-lg transition duration-150 text-darkcolor px-5 py-3 text-center bg-lightcolor font-semibold hover:opacity-75">
-                                    Download
-                                </button>                                                                      
-                            </div>
-                            
-                            <div class="download-link mr-5 mt-5 lg:mt-0 text-left">
-                                <h2 class="mb-5 opacity-75">
-                                    Mediafire
-                                </h2>
-                                <button @auth href="" @endauth @guest disabled @endguest class="@guest cursor-not-allowed @endguest rounded-lg shadow-lg transition duration-150 text-darkcolor px-5 py-3 text-center bg-lightcolor font-semibold hover:opacity-75">
-                                    Download
-                                </button>  
-                            </div>
-
-                            <div class="download-link mr-5 mt-5 lg:mt-0 text-left">
-                                <h2 class="mb-5 opacity-75">
-                                    Mega
-                                </h2>
-                                <button @auth href="" @endauth @guest disabled @endguest class="@guest cursor-not-allowed @endguest rounded-lg shadow-lg transition duration-150 text-darkcolor px-5 py-3 text-center bg-lightcolor font-semibold hover:opacity-75">
-                                    Download
-                                </button>  
-                            </div>
-                        </div>
-                        {{-- @guest
-                            <div class="bg-lightcolor p-5 text-primarycolor font-semibold text-left w-auto shadow-xl rounded-tr-xl rounded-bl-xl cursor-not-allowed sm:w-[28rem]" data-aos="fade-in" data-aos-duration="1500">
-                                Login to download the book.
-                            </div>
-                        @endguest --}}                        
-                        <div class="text-left mt-8">                                                        
+                        </div>           
+                        <h2 class="opacity-75 mb-5">
+                            Download links
+                        </h2>          
+                        <div class="flex flex-wrap">                            
+                            @foreach ($book['file_path'] as $filepath)
+                                <div class="download-link mr-5 mt-5 lg:mt-0 text-left">                                                                    
+                                    <a @auth href="/storage/bookLink/{{ $filepath }}" @endauth @guest disabled @endguest class="text-sm @guest cursor-not-allowed @endguest rounded-lg shadow-lg transition duration-150 text-darkcolor px-5 py-3 text-center bg-lightcolor font-semibold hover:opacity-75">
+                                        Download
+                                    </a>                                                                      
+                                </div>
+                            @endforeach                            
+                        </div>                        
+                        {{-- <div class="text-left mt-8">                                                        
                             <h2 class="opacity-75">
                                 Supported File Types
                             </h2>
                             <p><a href="#" class="text-lg text-semibold hover:opacity-75">Epub, Pdf</a></p>
-                        </div> 
+                        </div>  --}}
                     </div>
                 </div>
             </div>

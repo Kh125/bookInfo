@@ -1,6 +1,6 @@
 <div class="relative bg-white/30 backdrop-blur-sm rounded-lg hover:shadow-xl w-[21rem] h-32 mx-auto sm:mx-0 mb-16 sm:mr-2 md:mr-5 xl:mr-3">
     <a href="{{ route('books.show', $book['id']) }}">
-        <img src="/storage/images/{{ $book['img'] }}" alt="" class="z-20 absolute -top-10 left-5 object-cover w-[5.4rem] h-28 rounded-md shadow-md hover:scale-110 transition duration-150">
+        <img src="{{ $book['img'] }}" alt="" class="z-20 absolute -top-10 left-5 object-cover w-[5.4rem] h-28 rounded-md shadow-md hover:scale-110 transition duration-150">
     </a>
     <div class="pl-2 pr-1 absolute right-0 w-56 h-full">
         <h2 class="mt-3 font-bold max-h-[3rem] text-ellipsis overflow-y-hidden">

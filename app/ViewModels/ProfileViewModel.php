@@ -4,9 +4,9 @@ namespace App\ViewModels;
 
 use Spatie\ViewModels\ViewModel;
 
-class BooksViewModel extends ViewModel
+class ProfileViewModel extends ViewModel
 {
-    public $books;    
+    private $books;
     public function __construct($books)
     {
         $this->books = $books;
@@ -18,5 +18,5 @@ class BooksViewModel extends ViewModel
                 'bookImg'=>$book['bookImg'] ? '/storage/bookCover/' . $book['bookImg'] : 'https://ui-avatars.com/api/?size=235&name='. $book['name'],
             ]);
         });
-    }    
+    }
 }

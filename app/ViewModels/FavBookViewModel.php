@@ -14,12 +14,12 @@ class FavBookViewModel extends ViewModel
 
     public function favBook(){
         // return $this->favBook;
-        return collect($this->favBook)->map(function($book){
+        return collect($this->favBook)->map(function($book){            
             return collect($book)->merge([
                 'id'=> $book['id'],
                 'name'=> $book['name'],
-                'genres'=> $book['genres'], 
-                'img'=> $book['file_path'],                
+                'genres'=> $book['genres'],                 
+                'img'=>$book['bookImg'] ? '/storage/bookCover/' . $book['bookImg'] : 'https://ui-avatars.com/api/?size=235&name='. $book['name'],
             ])->only('id', 'name', 'genres', 'img');
         });
     }

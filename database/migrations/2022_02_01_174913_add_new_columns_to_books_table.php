@@ -14,9 +14,10 @@ class AddNewColumnsToBooksTable extends Migration
     public function up()
     {
         Schema::table('books', function (Blueprint $table) {
-            $table->string('ISBN13')->unique();
-            $table->string('ISBN10')->unique();
-            $table->string('producerName');            
+            $table->string('ISBN13')->unique()->nullable();
+            $table->string('ISBN10')->unique()->nullable();
+            $table->string('producerName')->nullable();
+            $table->string('bookImg')->nullable();
         });
     }
 

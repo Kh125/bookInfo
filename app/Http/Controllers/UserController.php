@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\ViewModels\ProfileViewModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -26,8 +27,8 @@ class UserController extends Controller
     public function profile(User $user)
     {
         $books = $user->books;
-        return view('user.profile', [
-            'books'=> $books,
+        $viewModel = new ProfileViewModel($books);
+        return view('user.profile', $viewModel, [
             'user'=> $user
         ]);
     }

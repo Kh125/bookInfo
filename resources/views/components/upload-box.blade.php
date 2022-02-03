@@ -1,5 +1,5 @@
 <div class="flex items-center justify-between py-1 text-gray-400">
-    <input class="z-20 w-full text-gray-400 ebook-file-upload" type="file" name="filenames[]" accept=".pdf, .epub, .doc, .docx, .fb2, .inf, .azw, .azw3, .kf8, .kfx, .mobi, .txt" class="@error('ebook_file') border border-red-500 @enderror mt-1 w-full rounded-lg px-4 py-2 outline-none text-sm" placeholder="Upload Book">
+    <input class="z-20 w-full text-gray-400 ebook-file-upload" type="file" name="filename[]" accept=".pdf, .epub, .doc, .docx, .fb2, .inf, .azw, .azw3, .kf8, .kfx, .mobi, .txt" class="@error('filename') border border-red-500 @enderror mt-1 w-full rounded-lg px-4 py-2 outline-none text-sm" placeholder="Upload Book">
     <svg class="z-10 absolute right-2 hover:scale-105 hover:opacity-80 transition duration-200" width="18" height="18" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
         viewBox="0 0 259.914 259.914" style="enable-background:new 0 0 259.914 259.914;" xml:space="preserve">
         <path d="M9.344,96.957v-67.25c0-8.271,7.69-14.75,17.083-14.75h48.5c8.46,0,14.435,5.854,14.738,14.32
