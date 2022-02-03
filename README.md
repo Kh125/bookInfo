@@ -11,5 +11,6 @@ A site for people who want to know the details about the book and include a comm
     <li>Jquery</li>
     <li>Infinite scoll(for pagination and loading contents on scroll)</li>    
     <li>Mysql</li>
+    <li>Use google API to get books details</li>
 </ul>
 
