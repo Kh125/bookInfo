@@ -20,7 +20,8 @@ class SearchSingleBookInfo extends ViewModel
             $imageLink = '';
         }
         return collect($this->singleBook)->merge([
-            'imageLink'=> $imageLink ? $imageLink : 'https://ui-avatars.com/api/?size=500&name='. $this->singleBook['volumeInfo']['title'],
+            // 'imageLink'=> $imageLink ? $imageLink : 'https://ui-avatars.com/api/?size=500&name='. $this->singleBook['volumeInfo']['title'],
+            'imageLink'=>'https://ui-avatars.com/api/?size=500&name='. $this->singleBook['volumeInfo']['title'],
             'name'=> $this->singleBook['volumeInfo']['title'],
             'categories'=> isset($this->singleBook['volumeInfo']['categories']) ? $this->singleBook['volumeInfo']['categories'] : 'Unknown Category',
             'averageRating'=> isset($this->singleBook['volumeInfo']['averageRating']) ? $this->singleBook['volumeInfo']['averageRating'] : 'N/A',

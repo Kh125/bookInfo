@@ -15,10 +15,18 @@ class HomeViewModel extends ViewModel
     }
 
     public function latestBooks(){
-        return $this->latestBooks;
+        return collect($this->latestBooks)->map(function($book){
+            return collect($book)->merge([
+                'bookImg'=> 'https://ui-avatars.com/api/?size=235&name='. $book['name'],
+            ]);
+        });
     }
 
     public function popularBooks(){
-        return $this->popularBooks;
+        return collect($this->popularBooks)->map(function($book){
+            return collect($book)->merge([
+                'bookImg'=> 'https://ui-avatars.com/api/?size=235&name='. $book['name'],
+            ]);
+        });
     }
 }

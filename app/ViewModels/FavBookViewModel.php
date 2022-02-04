@@ -19,7 +19,8 @@ class FavBookViewModel extends ViewModel
                 'id'=> $book['id'],
                 'name'=> $book['name'],
                 'genres'=> $book['genres'],                 
-                'img'=>$book['bookImg'] ? '/storage/bookCover/' . $book['bookImg'] : 'https://ui-avatars.com/api/?size=235&name='. $book['name'],
+                // 'img'=>$book['bookImg'] ? '/storage/bookCover/' . $book['bookImg'] : 'https://ui-avatars.com/api/?size=235&name='. $book['name'],
+                'img'=>'https://ui-avatars.com/api/?size=235&name='. $book['name'],
             ])->only('id', 'name', 'genres', 'img');
         });
     }

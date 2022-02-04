@@ -15,7 +15,8 @@ class ProfileViewModel extends ViewModel
     public function books(){
         return collect($this->books)->map(function($book){
             return collect($book)->merge([
-                'bookImg'=>$book['bookImg'] ? '/storage/bookCover/' . $book['bookImg'] : 'https://ui-avatars.com/api/?size=235&name='. $book['name'],
+                // 'bookImg'=>$book['bookImg'] ? '/storage/bookCover/' . $book['bookImg'] : 'https://ui-avatars.com/api/?size=235&name='. $book['name'],
+                'bookImg'=>'https://ui-avatars.com/api/?size=235&name='. $book['name'],
             ]);
         });
     }

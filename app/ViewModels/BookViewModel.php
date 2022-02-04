@@ -22,7 +22,8 @@ class BookViewModel extends ViewModel
             'producerName'=>$this->book['producerName']  ?? 'Unknown',
             'rating'=>$this->book['rating']  ?? 'N/A',
             'genres'=>$this->book['genres']  ?? 'Unknown',
-            'bookImg'=>$this->book['bookImg'] ? '/storage/bookCover/' . $this->book['bookImg'] : 'https://ui-avatars.com/api/?size=235&name='. $this->book['name'],
+            // 'bookImg'=>$this->book['bookImg'] ? '/storage/bookCover/' . $this->book['bookImg'] : 'https://ui-avatars.com/api/?size=235&name='. $this->book['name'],
+            'bookImg'=>'https://ui-avatars.com/api/?size=235&name='. $this->book['name'],
         ]);
     }
 }
