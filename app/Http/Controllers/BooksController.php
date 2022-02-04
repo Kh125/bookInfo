@@ -214,15 +214,17 @@ class BooksController extends Controller
         ]);
         $image = null;        
         if($request->bookImg != null){            
-            $request->bookImg->store('/public/bookCover');
+            // we can use this method if we have storage on heroku but now we can't use this process since we have no storage
+            // $request->bookImg->store('/public/bookCover');
             $image = $request->bookImg->hashName();                         
         }
 
         if($request->hasfile('filename'))
         {
            foreach($request->file('filename') as $file)
-           {               
-               $file->store('/public/bookLink');  
+           {   
+               // we can use this method if we have storage on heroku but now we can't use this process since we have no storage            
+            //    $file->store('/public/bookLink');  
                $data[]= $file->hashName();
            }
         }

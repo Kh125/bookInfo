@@ -13,17 +13,14 @@ class SearchSingleBookInfo extends ViewModel
         $this->singleBook = $singleBook;
     }
 
-    public function book(){
-        // we use default photo for all users since i have no storage to store user uploaded photo in heroku.
-        // if(isset($this->singleBook['volumeInfo']['imageLinks'])){
-        //     $imageLink = $this->singleBook['volumeInfo']['imageLinks']['thumbnail'];
-        // }else{
-        //     $imageLink = '';
-        // }
-        return collect($this->singleBook)->merge([
-            // we use default photo for all users since i have no storage to store user uploaded photo in heroku.
-            // 'imageLink'=> $imageLink ? $imageLink : 'https://ui-avatars.com/api/?size=500&name='. $this->singleBook['volumeInfo']['title'],
-            'imageLink'=>'https://ui-avatars.com/api/?size=500&name='. $this->singleBook['volumeInfo']['title'],
+    public function book(){        
+        if(isset($this->singleBook['volumeInfo']['imageLinks'])){
+            $imageLink = $this->singleBook['volumeInfo']['imageLinks']['thumbnail'];
+        }else{
+            $imageLink = '';
+        }
+        return collect($this->singleBook)->merge([            
+            'imageLink'=> $imageLink ? $imageLink : 'https://ui-avatars.com/api/?size=500&name='. $this->singleBook['volumeInfo']['title'],            
             'name'=> $this->singleBook['volumeInfo']['title'],
             'categories'=> isset($this->singleBook['volumeInfo']['categories']) ? $this->singleBook['volumeInfo']['categories'] : 'Unknown Category',
             'averageRating'=> isset($this->singleBook['volumeInfo']['averageRating']) ? $this->singleBook['volumeInfo']['averageRating'] : 'N/A',
