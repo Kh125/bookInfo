@@ -109,7 +109,7 @@
                                     @else src="https://ui-avatars.com/api/?size=64&name=Khant"
                                     @endif alt="user" class=" hover:shadow-lg hover:opacity-80 hover:border-primarycolor transition duration-200 object-cover rounded-full w-7 h-7" aria-expanded="true" aria-haspopup="true"> --}}
 
-                                    // we use default photo for all users since i have no storage to store user uploaded photo in heroku.
+                                    {{-- // we use default photo for all users since i have no storage to store user uploaded photo in heroku. --}}
                                     <img src="https://ui-avatars.com/api/?size=64&name=Khant" alt="user" class="hover:shadow-lg hover:opacity-80 hover:border-primarycolor transition duration-200 object-cover rounded-full w-7 h-7" aria-expanded="true" aria-haspopup="true">
                                 </a>                         
                             </div>                        
