@@ -7,7 +7,7 @@
             {{-- profile-img-start --}}
             <div id="profile-img" class="img-and-edit-box">
                 {{-- we use default photo for all users since i have no storage to store user uploaded photo in heroku. --}}                
-                <img src="https://ui-avatars.com/api/?size=320&name=Khant" alt="User Profile" id="profile-image" class="object-cover basis-2/5 rounded-lg shadow-lg max-w-xs h-[480px]">
+                <img src="https://ui-avatars.com/api/?size=320&name={{ auth()->user()->name }}" alt="User Profile" id="profile-image" class="object-cover basis-2/5 rounded-lg shadow-lg max-w-xs h-[480px]">
 
                 {{-- <img @if($user->file_path != null) 
                 src="/storage/images/{{ $user->file_path }}"
