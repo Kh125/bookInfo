@@ -17,6 +17,7 @@ class HomeViewModel extends ViewModel
     public function latestBooks(){
         return collect($this->latestBooks)->map(function($book){
             return collect($book)->merge([
+                // we use default photo for all users since i have no storage to store user uploaded photo in heroku.
                 'bookImg'=> 'https://ui-avatars.com/api/?size=235&name='. $book['name'],
             ]);
         });
@@ -25,6 +26,7 @@ class HomeViewModel extends ViewModel
     public function popularBooks(){
         return collect($this->popularBooks)->map(function($book){
             return collect($book)->merge([
+                // we use default photo for all users since i have no storage to store user uploaded photo in heroku.
                 'bookImg'=> 'https://ui-avatars.com/api/?size=235&name='. $book['name'],
             ]);
         });

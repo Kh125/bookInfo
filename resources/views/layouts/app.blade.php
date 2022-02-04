@@ -103,11 +103,14 @@
                         {{-- drop-down --}}
                         <div class="relative inline-block text-left">
                             <div>
-                                <a id="profile-button" class="setting-button hover:shadow-lg hover:opacity-80">
-                                    <img @if(Auth::user()->file_path != null) 
+                                <a id="profile-button" class="setting-button hover:shadow-lg hover:opacity-80">                                    
+                                    {{-- <img @if(Auth::user()->file_path != null) 
                                     src="/storage/images/{{ Auth::user()->file_path }}"
                                     @else src="https://ui-avatars.com/api/?size=64&name=Khant"
-                                    @endif alt="user" class=" hover:shadow-lg hover:opacity-80 hover:border-primarycolor transition duration-200 object-cover rounded-full w-7 h-7" aria-expanded="true" aria-haspopup="true">
+                                    @endif alt="user" class=" hover:shadow-lg hover:opacity-80 hover:border-primarycolor transition duration-200 object-cover rounded-full w-7 h-7" aria-expanded="true" aria-haspopup="true"> --}}
+
+                                    // we use default photo for all users since i have no storage to store user uploaded photo in heroku.
+                                    <img src="https://ui-avatars.com/api/?size=64&name=Khant" alt="user" class="hover:shadow-lg hover:opacity-80 hover:border-primarycolor transition duration-200 object-cover rounded-full w-7 h-7" aria-expanded="true" aria-haspopup="true">
                                 </a>                         
                             </div>                        
                             <div id="dropdown-box" class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-300 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">

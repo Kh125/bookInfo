@@ -22,6 +22,7 @@ class BookViewModel extends ViewModel
             'producerName'=>$this->book['producerName']  ?? 'Unknown',
             'rating'=>$this->book['rating']  ?? 'N/A',
             'genres'=>$this->book['genres']  ?? 'Unknown',
+            // we use default photo for all users since i have no storage to store user uploaded photo in heroku.
             // 'bookImg'=>$this->book['bookImg'] ? '/storage/bookCover/' . $this->book['bookImg'] : 'https://ui-avatars.com/api/?size=235&name='. $this->book['name'],
             'bookImg'=>'https://ui-avatars.com/api/?size=235&name='. $this->book['name'],
         ]);

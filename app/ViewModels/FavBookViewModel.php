@@ -19,6 +19,7 @@ class FavBookViewModel extends ViewModel
                 'id'=> $book['id'],
                 'name'=> $book['name'],
                 'genres'=> $book['genres'],                 
+                // we use default photo for all users since i have no storage to store user uploaded photo in heroku.
                 // 'img'=>$book['bookImg'] ? '/storage/bookCover/' . $book['bookImg'] : 'https://ui-avatars.com/api/?size=235&name='. $book['name'],
                 'img'=>'https://ui-avatars.com/api/?size=235&name='. $book['name'],
             ])->only('id', 'name', 'genres', 'img');

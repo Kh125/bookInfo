@@ -6,10 +6,14 @@
         <div class="flex flex-wrap lg:flex-nowrap text-center md:text-left">
             {{-- profile-img-start --}}
             <div id="profile-img" class="img-and-edit-box">
-                <img @if($user->file_path != null) 
+                {{-- we use default photo for all users since i have no storage to store user uploaded photo in heroku. --}}                
+                <img src="https://ui-avatars.com/api/?size=320&name=Khant" alt="User Profile" id="profile-image" class="object-cover basis-2/5 rounded-lg shadow-lg max-w-xs h-[480px]">
+
+                {{-- <img @if($user->file_path != null) 
                 src="/storage/images/{{ $user->file_path }}"
                 @else src="https://ui-avatars.com/api/?size=320&name=Khant"
-                @endif alt="User Profile" id="profile-image" class="object-cover basis-2/5 rounded-lg shadow-lg max-w-xs h-[480px]">
+                @endif alt="User Profile" id="profile-image" class="object-cover basis-2/5 rounded-lg shadow-lg max-w-xs h-[480px]"> --}}
+
                 @if (auth()->user()->id == $user->id)                                    
                 <div class="edit-box mt-3">
                     <a id="edit-button" class="cursor-pointer rounded-lg shadow-md hover:bg-slate-200 transition duration-200 bg-lightcolor text-darkcolor px-3 py-3 flex justify-center w-36">
